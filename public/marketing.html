@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<htlm lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title> D- CLIC  </title>
+        <link rel="stylesheet" href="style.css">
+		<script src="jquery-3.6.0.js"></script>
+	</head>
+
+	<body>
+		<div class ="container"> 
+			<div class ="menu"> 
+	            <ul>
+	            	<a href="/"><li class="logo"> <img src="./image/sayna.jpg"></li></a>
+	            	<a href="/"><li>Home</li></a>
+	            	<a href="/backend"><li>BackEnd</li></a>
+	            	<a href="/frontend"><li>FrontEnd</li></a>
+                    <a href="/marketingDigital"><li>Marketing Digital</li></a>
+					<a href="/uxui"><li>UX/UI</li></a>
+	            	<a href="/contact"><li>Contact</li></a>
+	            	<li> <a href = "/signup" class="signup-btn"> <span> Sign Up </span> </a> </li>
+	            </ul>
+			</div>
+
+			<div class = "banner" > 
+				<div class="app-text"> 
+					<h3> D-CLIC <br> Venez voir avec nous les supports et canaux digitaux <br>pour promouvoir des produits et services. </h3>
+					<p>Marketing digital ou marketing numérique ?  <br> C’est métier un avenir englobant la technologie <br> et le commerce.</p>
+					<div class="play-btn"> 
+						<div class="play-btn-inner"> 			
+						</div>
+					</div>
+				</div>
+
+				<div class="app-picture-marketing" >
+					<img src="./image/image_marketing.jpg">
+
+				</div>
+				
+				<div id="content">
+								
+				</div>
+				<!-- <div class="flip-box">
+					<div class="flip-box-inner">
+						<div class="flip-box-front">
+							<h2>Avis des utilisateurs sur le Marketing</h2>
+							<div id="content">
+								
+							</div>
+						</div>
+						<div class="flip-box-back">
+							<h2>Suite</h2>
+						</div>
+					</div>
+				</div> -->
+			</div>
+		</div>
+
+		<script>
+			$.ajax({
+				url: "/mark",
+				method: "get",
+				dataType: "json",
+				success: function(response){
+					console.log(response);
+					response.forEach(elem=>{
+						$("#content").append(
+							`<div class="flip-box">
+							<div class="flip-box-inner">
+								<div class="flip-box-front">
+									<h2>Avis des utilisateurs sur le Marketing</h2>
+									<h4>Nom et prenom: ${elem.firstname} ${elem.lastname}</h4>
+									<p>Avis:  ${elem.avis}</p>
+								</div>
+								<div class="flip-box-back">
+									<h2>Suite</h2>
+								</div>
+							</div>
+						</div>`
+						);
+					});
+				},
+				error: function(response){
+					console.log(response);
+				}
+			});
+		</script>
+	</body>
+</html>

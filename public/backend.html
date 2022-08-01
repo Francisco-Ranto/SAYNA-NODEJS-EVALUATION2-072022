@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<htlm lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title> D- CLIC  </title>
+        <link rel="stylesheet" href="style.css">
+		<script src="jquery-3.6.0.js"></script>
+	</head>
+
+	<body>
+		<div class ="container"> 
+			<div class ="menu"> 
+	            <ul>
+	            	<a href="/"><li class="logo"> <img src="./image/sayna.jpg"></li></a>
+	            	<a href="/"><li>Home</li></a>
+	            	<a href="/backend"><li>BackEnd</li></a>
+	            	<a href="/frontend"><li>FrontEnd</li></a>
+                    <a href="/marketingDigital"><li>Marketing Digital</li></a>
+					<a href="/uxui"><li>UX/UI</li></a>
+	            	<a href="/contact"><li>Contact</li></a>
+	            	<li> <a href = "/signup" class="signup-btn"> <span> Sign Up </span> </a> </li>
+	            </ul>
+			</div>
+
+			<div class = "banner" > 
+				<div class="app-text"> 
+					<h1> D-CLIC <br> Venez coder le serveur avec nous </h1>
+					<p>Ici on étudie la gestion des bases de données <br> la logique de l’application,  <br> les API etc…, </p>
+					<div class="play-btn"> 
+						<div class="play-btn-inner">
+						</div>
+					</div>
+				</div>
+
+				<div class="app-picture-backend" >
+					<img src="./image/image_backend.jpg">
+				</div>
+				<div id="content">
+					
+				</div>
+
+				<!-- <div class="flip-box">
+					<div class="flip-box-inner">
+						<div class="flip-box-front">
+							<h2>Avis des utilisateurs sur le backend</h2>
+						</div>
+						<div class="flip-box-back">
+							<h2>Suite</h2>
+						</div>
+					</div>
+				</div> -->
+			</div>
+		</div>
+	</body>
+	<script>
+		$.ajax({
+			url: "/back",
+			method: "get",
+			dataType: "json",
+			success: function(response){
+				console.log(response);
+				response.forEach(elem=>{
+					$("#content").append(
+						`<div class="flip-box">
+							<div class="flip-box-inner">
+								<div class="flip-box-front">
+									<h2>Avis des utilisateurs sur le backend</h2>
+									<h4>Nom et prenom: ${elem.firstname} ${elem.lastname}</h4>
+									<p>Avis:  ${elem.avis}</p>
+								</div>
+								<div class="flip-box-back">
+									<h2>Suite</h2>
+								</div>
+							</div>
+						</div>`
+					);
+				});
+			},
+			error: function(response){
+				console.log(response);
+			}
+		});
+	</script>
+</html>
